@@ -12,7 +12,7 @@ export const useForm = ( initialForm = {},formValidations={} ) => {
     createValidators()
    },[formState])
 
-   const ifFormValid= useMemo(()=>{
+   const isFormValid= useMemo(()=>{
 
     //revisamos las propiedas si tienen el valor de null
     //usamos ciclos
@@ -61,6 +61,6 @@ export const useForm = ( initialForm = {},formValidations={} ) => {
         onInputChange,
         onResetForm,
         ...formValidation,
-        ifFormValid
+        isFormValid
     }
 }

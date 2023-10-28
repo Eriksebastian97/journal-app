@@ -1,6 +1,6 @@
 //los thunks son acciones donde puedo hacer dispatch de estas acciones recuerda que estas acciones son tareas asincronicas
 
-import { singWitchGoogle } from "../../../firebase/provider";
+import { registerUserWitchEmailPassword, singWitchGoogle } from "../../../firebase/provider";
 import { checkingCredentials, login, logout } from "./authSlice";
 
 
@@ -25,5 +25,14 @@ export const startGoogleSingIn = ()=>{
          dispatch(login(result))
 
         }
+}
 
+export const startCreatingWitchEmailPassword = ({email,password,displayName})=>{
+    return async(dispatch)=>{
+        dispatch(checkingCredentials())
+
+        const resp = await registerUserWitchEmailPassword({email,password,displayName})
+
+        console.log(resp)
+    }
 }

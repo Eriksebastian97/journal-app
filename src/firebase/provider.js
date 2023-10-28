@@ -1,6 +1,6 @@
 //va a contener todos los provedores de informacion .
 
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { firebaseAuth } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
@@ -41,3 +41,19 @@ export const singWitchGoogle = async () => {
     };
   }
 };
+
+
+export const registerUserWitchEmailPassword = async({email,password,displayName})=>{
+
+  try{
+    
+    const resp = await createUserWithEmailAndPassword(firebaseAuth,email,password)
+    const {uid,photoURL} = resp.user
+    console.log(resp)
+
+
+  }catch(error){
+    console.log(error)
+    return { ok:false, errorMessage: error.message}
+  }
+}
